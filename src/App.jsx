@@ -1,122 +1,290 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import React, { useState } from 'react';
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  // State for Community Engagement (Prayer & Praise Wall)
+  const [messages, setMessages] = useState([
+    {
+      id: 1,
+      name: "Sarah M.",
+      text: "Vanessa's worship leading last Sunday truly moved my spirit. Thank you for your obedience to God's call! The atmosphere was so pure.",
+      date: "2 days ago"
+    },
+    {
+      id: 2,
+      name: "David T.",
+      text: "Praying for the upcoming young adult retreat. So grateful for your leadership and the safe spaces you create for our youth.",
+      date: "1 week ago"
+    }
+  ]);
+  const [newName, setNewName] = useState("");
+  const [newMessage, setNewMessage] = useState("");
+
+  const handleMessageSubmit = (e) => {
+    e.preventDefault();
+    if (!newName.trim() || !newMessage.trim()) return;
+    
+    const newEntry = {
+      id: Date.now(),
+      name: newName,
+      text: newMessage,
+      date: "Just now"
+    };
+    
+    setMessages([newEntry, ...messages]);
+    setNewName("");
+    setNewMessage("");
+  };
+
+  // Gallery Data: Alternating Landscape and Tall images
+  const galleryImages = [
+    { id: 1, type: "landscape", alt: "Worship Leading", src: "https://images.unsplash.com/photo-1510511459019-5efa3cd4fc0d?auto=format&fit=crop&q=80&w=800&h=450" },
+    { id: 2, type: "tall", alt: "Faith and Devotion", src: "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&q=80&w=600&h=800" },
+    { id: 3, type: "landscape", alt: "Community Gathering", src: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&q=80&w=800&h=450" },
+    { id: 4, type: "tall", alt: "Young Adult Leadership", src: "https://images.unsplash.com/photo-1529156069898-49953eb1f5ff?auto=format&fit=crop&q=80&w=600&h=800" },
+    { id: 5, type: "landscape", alt: "Graphic Design & Creativity", src: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=800&h=450" },
+    { id: 6, type: "tall", alt: "Praise and Worship", src: "https://images.unsplash.com/photo-1490730141103-6cac27aaab94?auto=format&fit=crop&q=80&w=600&h=800" },
+  ];
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+    <div className="min-h-screen bg-[#0a0a0a] text-stone-200 font-sans selection:bg-purple-900 selection:text-white pb-20">
+      
+      {/* Navigation */}
+      <header className="sticky top-0 z-50 bg-[#0a0a0a]/90 backdrop-blur-sm p-6 flex justify-between items-center text-xs tracking-widest uppercase border-b border-stone-800">
+        <span className="font-bold tracking-[0.2em] text-white">Vanessa Brown</span>
+        <nav className="space-x-6 lg:space-x-8 hidden md:block">
+          <a href="#about" className="hover:text-purple-400 transition-colors duration-300">Heart</a>
+          <a href="#ministry" className="hover:text-purple-400 transition-colors duration-300">Ministries</a>
+          <a href="#gallery" className="hover:text-purple-400 transition-colors duration-300">Gallery</a>
+          <a href="#community" className="hover:text-purple-400 transition-colors duration-300">Community</a>
+        </nav>
+        <a 
+          href="#community" 
+          className="border border-purple-500 text-purple-400 px-6 py-2 hover:bg-purple-500 hover:text-white transition-all duration-300"
+        >
+          Engage
+        </a>
+      </header>
+
+      {/* Hero Section */}
+      <section className="relative pt-24 pb-12 px-6 md:px-12 flex flex-col items-center text-center border-b border-stone-800">
+         <div className="w-full max-w-6xl">
+            <p className="text-purple-400 tracking-[0.2em] text-sm md:text-base mb-6 uppercase font-medium">
+              Praise & Worship Leader
+            </p>
+            <h1 className="text-6xl md:text-[9rem] leading-none font-serif font-bold tracking-tighter mb-16 text-white">
+              VANESSA<br />BROWN
+            </h1>
+            
+            <div className="flex flex-col md:flex-row justify-between items-center w-full mt-12 border-t border-stone-800 pt-8 text-sm tracking-widest uppercase">
+              <div className="mb-6 md:mb-0 text-center md:text-left">
+                <span className="block text-stone-500 text-xs mb-1">Calling</span>
+                <span className="text-purple-400 font-semibold">Head of Praise</span>
+              </div>
+              <div className="mb-6 md:mb-0 text-center">
+                 <span className="block text-stone-500 text-xs mb-1">Mission</span>
+                 <span className="text-purple-400 font-semibold">Radiating Love</span>
+              </div>
+              <div className="text-center md:text-right">
+                <span className="block text-stone-500 text-xs mb-1">Focus</span>
+                <span className="text-purple-400 font-semibold">Young Adult Leader</span>
+              </div>
+            </div>
+         </div>
+      </section>
+
+      {/* Inspiration Marquee */}
+      <div className="bg-stone-900 py-5 overflow-hidden border-b border-stone-800 flex justify-center">
+        <div className="flex flex-wrap justify-center gap-4 md:space-x-8 text-lg md:text-2xl font-serif italic text-stone-400 px-6 text-center">
+          <span>Worship</span>
+          <span className="text-purple-500 hidden md:inline">•</span>
+          <span>Event Planning</span>
+          <span className="text-purple-500 hidden md:inline">•</span>
+          <span>Graphic Design</span>
+          <span className="text-purple-500 hidden md:inline">•</span>
+          <span>Compassion</span>
         </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
+      </div>
+
+      {/* About & Mission Section */}
+      <section id="about" className="py-24 px-6 md:px-12 flex justify-center border-b border-stone-800">
+        <div className="max-w-4xl text-center">
+          <p className="text-purple-400 text-xs tracking-[0.3em] uppercase mb-8">◆ Colossians 3:14 ◆</p>
+          <h2 className="text-4xl md:text-6xl font-serif leading-tight text-white mb-8 uppercase">
+            And above all these things put on <span className="text-purple-400 italic lowercase">charity</span>, which is the bond of perfectness.
+          </h2>
+          <p className="text-stone-400 max-w-2xl mx-auto text-lg leading-relaxed">
+            Vanessa Brown is a devoted Christian dedicated to serving her community. As a gifted singer and passionate leader, she radiates love and compassion in everything she does. Her ultimate goal is to lead others into the presence of God and foster deep, authentic spiritual connections.
           </p>
         </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
       </section>
 
-      <div className="ticks"></div>
+      {/* Ministries / Grid Section */}
+      <section id="ministry" className="py-24 px-6 md:px-12 bg-[#050505] border-b border-stone-800">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl md:text-7xl font-serif text-white mb-6 uppercase tracking-tight">
+            More than a <span className="text-purple-400 italic lowercase">singer.</span>
+          </h2>
+          <p className="text-stone-400 max-w-2xl mb-16 text-lg leading-relaxed">
+            A true leader builds community. Vanessa channels her faith through multiple avenues, quietly building spaces that shape modern worship, spiritual growth, and fellowship.
+          </p>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="border border-stone-800 p-10 hover:border-purple-500/50 transition-colors duration-500 group bg-stone-950">
+              <p className="text-xs text-purple-400 tracking-widest uppercase mb-4">01 · The Ministry</p>
+              <h3 className="text-3xl font-serif text-white mb-2 group-hover:text-purple-300 transition-colors">HEAD OF PRAISE</h3>
+              <p className="text-stone-500 text-sm italic mb-6">Worship Leading · Ministry Direction</p>
+              <p className="text-stone-400 text-sm leading-relaxed">
+                Guiding the congregation into the presence of God. Vanessa oversees the praise team with grace, fostering an environment where pure, uninterrupted worship can thrive.
+              </p>
+            </div>
+
+            <div className="border border-stone-800 p-10 hover:border-purple-500/50 transition-colors duration-500 group bg-stone-950">
+              <p className="text-xs text-purple-400 tracking-widest uppercase mb-4">02 · The Next Generation</p>
+              <h3 className="text-3xl font-serif text-white mb-2 group-hover:text-purple-300 transition-colors">YOUNG ADULT LEADER</h3>
+              <p className="text-stone-500 text-sm italic mb-6">Mentorship · Spiritual Guidance</p>
+              <p className="text-stone-400 text-sm leading-relaxed">
+                Committed to the spiritual growth of young adults. Creating safe, engaging spaces for the next generation to ask questions, grow in their faith, and build lasting fellowship.
+              </p>
+            </div>
+
+            <div className="border border-stone-800 p-10 hover:border-purple-500/50 transition-colors duration-500 group bg-stone-950">
+              <p className="text-xs text-purple-400 tracking-widest uppercase mb-4">03 · The Gatherings</p>
+              <h3 className="text-3xl font-serif text-white mb-2 group-hover:text-purple-300 transition-colors">EVENT PLANNER</h3>
+              <p className="text-stone-500 text-sm italic mb-6">Coordination · Administration</p>
+              <p className="text-stone-400 text-sm leading-relaxed">
+                Bringing visions to life. From church retreats to community outreach programs, Vanessa organizes spiritual gatherings with meticulous attention to detail and a spirit of hospitality.
+              </p>
+            </div>
+
+            <div className="border border-stone-800 p-10 hover:border-purple-500/50 transition-colors duration-500 group bg-stone-950">
+              <p className="text-xs text-purple-400 tracking-widest uppercase mb-4">04 · The Visuals</p>
+              <h3 className="text-3xl font-serif text-white mb-2 group-hover:text-purple-300 transition-colors">GRAPHIC DESIGN</h3>
+              <p className="text-stone-500 text-sm italic mb-6">Spiritual Content · Advertising</p>
+              <p className="text-stone-400 text-sm leading-relaxed">
+                Translating the message into visual art. Designing compelling flyers, sermon series graphics, and social media content that effectively and beautifully advertises spiritual truths.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+      {/* Gallery Section */}
+      <section id="gallery" className="py-24 px-6 md:px-12 border-b border-stone-800">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-serif text-white mb-4 uppercase tracking-tight text-center">
+            Moments in <span className="text-purple-400 italic lowercase">Ministry</span>
+          </h2>
+          <p className="text-stone-500 text-center mb-16 text-sm tracking-widest uppercase">Capturing the heart of worship and community</p>
+
+          {/* Grid Layout for Gallery (Landscape, Tall alternating) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-max items-start">
+            {galleryImages.map((image) => (
+              <div 
+                key={image.id} 
+                className={`overflow-hidden rounded-sm group relative ${
+                  image.type === 'landscape' 
+                    ? 'aspect-video lg:col-span-2' 
+                    : 'aspect-[3/4] lg:col-span-1'
+                }`}
+              >
+                <img 
+                  src={image.src} 
+                  alt={image.alt}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 group-hover:opacity-75"
+                />
+                <div className="absolute inset-0 border border-purple-500/0 group-hover:border-purple-500/50 transition-colors duration-500 m-4 pointer-events-none"></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Community Engagement Section */}
+      <section id="community" className="py-24 px-6 md:px-12 bg-stone-950 border-b border-stone-800">
+        <div className="max-w-5xl mx-auto flex flex-col lg:flex-row gap-16">
+          
+          {/* Form Side */}
+          <div className="lg:w-1/2">
+            <h2 className="text-3xl md:text-5xl font-serif text-white mb-4 uppercase tracking-tight">
+              Community <span className="text-purple-400 italic lowercase">Wall</span>
+            </h2>
+            <p className="text-stone-400 mb-8 text-lg leading-relaxed">
+              Share a prayer request, a testimony, or a word of encouragement for Vanessa and the ministry. Let us fellowship together in spirit and in truth.
+            </p>
+            
+            <form onSubmit={handleMessageSubmit} className="space-y-6">
+              <div>
+                <label htmlFor="name" className="block text-xs text-purple-400 tracking-widest uppercase mb-2">Your Name</label>
+                <input 
+                  type="text" 
+                  id="name"
+                  value={newName}
+                  onChange={(e) => setNewName(e.target.value)}
+                  className="w-full bg-[#0a0a0a] border border-stone-800 p-4 text-white focus:outline-none focus:border-purple-500 transition-colors"
+                  placeholder="John Doe"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="message" className="block text-xs text-purple-400 tracking-widest uppercase mb-2">Message or Prayer</label>
+                <textarea 
+                  id="message"
+                  value={newMessage}
+                  onChange={(e) => setNewMessage(e.target.value)}
+                  rows="4"
+                  className="w-full bg-[#0a0a0a] border border-stone-800 p-4 text-white focus:outline-none focus:border-purple-500 transition-colors resize-none"
+                  placeholder="Leave a word of encouragement..."
+                  required
+                ></textarea>
+              </div>
+              <button 
+                type="submit" 
+                className="w-full bg-purple-600 text-white px-8 py-4 tracking-widest text-sm uppercase hover:bg-purple-700 transition-colors duration-300"
+              >
+                Post to Wall
+              </button>
+            </form>
+          </div>
+
+          {/* Messages Side */}
+          <div className="lg:w-1/2 flex flex-col space-y-6 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar">
+            {messages.length === 0 ? (
+              <p className="text-stone-500 italic">No messages yet. Be the first to share!</p>
+            ) : (
+              messages.map((msg) => (
+                <div key={msg.id} className="bg-[#0a0a0a] border-l-2 border-purple-500 p-6 relative group">
+                  <div className="absolute top-0 right-0 p-4 opacity-10">
+                     {/* Decorative Quote Icon */}
+                     <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14 17H17L19 13V7H13V13H16L14 17ZM6 17H9L11 13V7H5V13H8L6 17Z" />
+                     </svg>
+                  </div>
+                  <p className="text-stone-300 italic mb-4 leading-relaxed relative z-10">"{msg.text}"</p>
+                  <div className="flex justify-between items-center text-xs tracking-widest uppercase text-stone-500">
+                    <span className="text-purple-400 font-bold">{msg.name}</span>
+                    <span>{msg.date}</span>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-12 text-center bg-[#0a0a0a]">
+        <h2 className="text-2xl font-serif text-white mb-6 uppercase">Stay Connected</h2>
+        <p className="text-stone-400 max-w-md mx-auto mb-8 text-sm">For ministry inquiries, event planning, or graphic design consultations, please reach out.</p>
+        <div className="flex justify-center space-x-6 mb-12 text-sm tracking-widest text-purple-400 uppercase">
+           <a href="#" className="hover:text-white transition-colors">Instagram</a>
+           <a href="#" className="hover:text-white transition-colors">Facebook</a>
+           <a href="#" className="hover:text-white transition-colors">Email</a>
+        </div>
+        <p className="text-xs text-stone-600 tracking-widest uppercase">
+          © {new Date().getFullYear()} Vanessa Brown. Radiating Love & Compassion.
+        </p>
+      </footer>
+      
+    </div>
+  );
 }
-
-export default App
