@@ -46,11 +46,15 @@ export default function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-stone-200 font-sans selection:bg-purple-900 selection:text-white pb-20">
+    <div className="min-h-screen bg-[#0a0a0a] text-stone-200 font-sans selection:bg-purple-900 selection:text-white pb-20 overflow-x-hidden">
       
       {/* Navigation */}
       <header className="sticky top-0 z-50 bg-[#0a0a0a]/90 backdrop-blur-sm p-6 flex justify-between items-center text-xs tracking-widest uppercase border-b border-stone-800">
-        <span className="font-bold tracking-[0.2em] text-white">Vanessa Brown</span>
+        <a href="#" className="flex items-center gap-4 hover:opacity-80 transition-opacity">
+          {/* Using a relative path for the public folder asset */}
+          <img src="logo.png" alt="Vanessa Brown Logo" className="h-10 w-auto object-contain" />
+          <span className="font-bold tracking-[0.2em] text-white hidden sm:block">Vanessa Brown</span>
+        </a>
         <nav className="space-x-6 lg:space-x-8 hidden md:block">
           <a href="#about" className="hover:text-purple-400 transition-colors duration-300">Heart</a>
           <a href="#ministry" className="hover:text-purple-400 transition-colors duration-300">Ministries</a>
@@ -65,43 +69,81 @@ export default function App() {
         </a>
       </header>
 
-      {/* Hero Section */}
-      <section className="relative pt-24 pb-12 px-6 md:px-12 flex flex-col items-center text-center border-b border-stone-800">
-         <div className="w-full max-w-6xl">
-            <p className="text-purple-400 tracking-[0.2em] text-sm md:text-base mb-6 uppercase font-medium">
-              Praise & Worship Leader
-            </p>
-            <h1 className="text-6xl md:text-[9rem] leading-none font-serif font-bold tracking-tighter mb-16 text-white">
-              VANESSA<br />BROWN
-            </h1>
-            
-            <div className="flex flex-col md:flex-row justify-between items-center w-full mt-12 border-t border-stone-800 pt-8 text-sm tracking-widest uppercase">
-              <div className="mb-6 md:mb-0 text-center md:text-left">
-                <span className="block text-stone-500 text-xs mb-1">Calling</span>
-                <span className="text-purple-400 font-semibold">Head of Praise</span>
-              </div>
-              <div className="mb-6 md:mb-0 text-center">
-                 <span className="block text-stone-500 text-xs mb-1">Mission</span>
-                 <span className="text-purple-400 font-semibold">Radiating Love</span>
-              </div>
-              <div className="text-center md:text-right">
-                <span className="block text-stone-500 text-xs mb-1">Focus</span>
-                <span className="text-purple-400 font-semibold">Young Adult Leader</span>
-              </div>
+      {/* Hero Section - Kirk Franklin Inspired */}
+      <section className="relative h-screen min-h-[700px] w-full flex flex-col justify-between overflow-hidden border-b border-stone-800">
+        {}
+        <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url('https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=1920&auto=format&fit=crop')` }}
+        >
+            {/* Gradient overlays to ensure text readability */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/70 via-[#0a0a0a]/30 to-[#0a0a0a] z-0"></div>
+            <div className="absolute inset-0 bg-black/10 z-0"></div> 
+        </div>
+
+        {}
+        <div className="relative z-10 w-full px-6 md:px-12 pt-12 flex justify-between items-start">
+            <div className="flex items-center gap-3 text-[0.65rem] tracking-[0.2em] uppercase text-stone-300">
+                <span className="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
+                <span>Serving Now · Radiating Love · Worldwide</span>
             </div>
-         </div>
+            
+            {/* Vertical Text - Left Edge */}
+            <div className="absolute left-6 md:left-12 top-[40vh] -rotate-90 origin-left text-[0.55rem] tracking-[0.4em] uppercase text-stone-500 hidden md:block whitespace-nowrap">
+                Est. 2015 · Ministry & Worship
+            </div>
+        </div>
+
+        {}
+        <div className="relative z-10 w-full flex flex-col items-center justify-center flex-grow pointer-events-none -mt-16">
+            <h1 className="text-[20vw] md:text-[14vw] leading-[0.75] font-serif font-bold text-white text-center w-full uppercase tracking-tighter drop-shadow-2xl">
+                VANESSA
+            </h1>
+            <h1 className="text-[20vw] md:text-[14vw] leading-[0.75] font-serif font-bold text-white text-center w-full uppercase tracking-tighter md:ml-32 drop-shadow-2xl">
+                BROWN
+            </h1>
+        </div>
+
+        {}
+        <div className="relative z-10 w-full px-6 md:px-12 pb-12 flex flex-col lg:flex-row justify-between items-start lg:items-end gap-10">
+            {/* Stats / Roles (Left) */}
+            <div className="flex flex-wrap gap-8 md:gap-16 text-left">
+                <div>
+                    <p className="text-[0.55rem] tracking-[0.25em] text-stone-500 uppercase mb-3">Primary Calling</p>
+                    <p className="text-3xl md:text-5xl font-serif text-white tracking-tight">HEAD OF PRAISE</p>
+                </div>
+                <div>
+                    <p className="text-[0.55rem] tracking-[0.25em] text-stone-500 uppercase mb-3">Community Focus</p>
+                    <p className="text-3xl md:text-5xl font-serif text-white tracking-tight">YOUNG ADULTS</p>
+                </div>
+                <div className="hidden sm:block">
+                    <p className="text-[0.55rem] tracking-[0.25em] text-stone-500 uppercase mb-3">Creative Arts</p>
+                    <p className="text-3xl md:text-5xl font-serif text-white tracking-tight">GRAPHICS</p>
+                </div>
+            </div>
+
+            {/* Action Buttons (Right) */}
+            <div className="flex gap-4 w-full lg:w-auto">
+                <a href="#community" className="flex-1 lg:flex-none text-center bg-purple-600 hover:bg-purple-700 text-white font-bold text-[0.65rem] tracking-widest uppercase px-8 py-4 transition-colors">
+                    Engage Community →
+                </a>
+                <a href="#about" className="flex-1 lg:flex-none text-center border border-stone-600 hover:border-white text-white text-[0.65rem] tracking-widest uppercase px-8 py-4 transition-colors">
+                    Learn More →
+                </a>
+            </div>
+        </div>
       </section>
 
-      {/* Inspiration Marquee */}
-      <div className="bg-stone-900 py-5 overflow-hidden border-b border-stone-800 flex justify-center">
-        <div className="flex flex-wrap justify-center gap-4 md:space-x-8 text-lg md:text-2xl font-serif italic text-stone-400 px-6 text-center">
-          <span>Worship</span>
-          <span className="text-purple-500 hidden md:inline">•</span>
-          <span>Event Planning</span>
-          <span className="text-purple-500 hidden md:inline">•</span>
-          <span>Graphic Design</span>
-          <span className="text-purple-500 hidden md:inline">•</span>
-          <span>Compassion</span>
+      {}
+      <div className="bg-[#0a0a0a] py-6 overflow-hidden border-b border-stone-800 flex justify-center">
+        <div className="flex flex-wrap justify-center items-center gap-4 md:space-x-10 text-xl md:text-3xl font-serif italic text-stone-400 px-6 text-center">
+          <span className="hover:text-purple-400 transition-colors cursor-default">Worship Leading</span>
+          <span className="text-purple-600 text-sm hidden md:inline">◆</span>
+          <span className="hover:text-purple-400 transition-colors cursor-default">Event Planning</span>
+          <span className="text-purple-600 text-sm hidden md:inline">◆</span>
+          <span className="hover:text-purple-400 transition-colors cursor-default">Graphic Design</span>
+          <span className="text-purple-600 text-sm hidden md:inline">◆</span>
+          <span className="hover:text-purple-400 transition-colors cursor-default">Compassion</span>
         </div>
       </div>
 
