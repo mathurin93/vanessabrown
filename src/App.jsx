@@ -49,13 +49,13 @@ export default function App() {
     <div className="min-h-screen bg-[#0a0a0a] text-stone-200 font-sans selection:bg-purple-900 selection:text-white pb-20 overflow-x-hidden">
       
       {/* Navigation */}
-      <header className="sticky top-0 z-50 bg-[#0a0a0a]/90 backdrop-blur-sm p-6 flex justify-between items-center text-xs tracking-widest uppercase border-b border-stone-800">
+      <header className="sticky top-0 z-50 bg-[#0a0a0a]/90 backdrop-blur-sm p-4 md:p-6 flex justify-between items-center text-xs tracking-widest uppercase border-b border-stone-800">
         <a href="#" className="flex items-center gap-4 hover:opacity-80 transition-opacity">
           {/* Using a relative path for the public folder asset */}
-          <img src="logo.png" alt="Vanessa Brown Logo" className="h-10 w-auto object-contain" />
-          <span className="font-bold tracking-[0.2em] text-white hidden sm:block">Vanessa Brown</span>
+          <img src="logo.png" alt="Vanessa Brown Logo" className="h-16 md:h-20 w-auto object-contain" />
+          <span className="font-bold tracking-[0.2em] text-white hidden md:block">Vanessa Brown</span>
         </a>
-        <nav className="space-x-6 lg:space-x-8 hidden md:block">
+        <nav className="space-x-6 lg:space-x-8 hidden lg:block">
           <a href="#about" className="hover:text-purple-400 transition-colors duration-300">Heart</a>
           <a href="#ministry" className="hover:text-purple-400 transition-colors duration-300">Ministries</a>
           <a href="#gallery" className="hover:text-purple-400 transition-colors duration-300">Gallery</a>
@@ -314,7 +314,8 @@ export default function App() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 text-center bg-[#0a0a0a]">
+      <footer className="py-20 text-center bg-[#0a0a0a] flex flex-col items-center">
+        <img src="logo.png" alt="Vanessa Brown Logo" className="h-24 md:h-32 w-auto object-contain mb-8 opacity-90 hover:opacity-100 transition-opacity" />
         <h2 className="text-2xl font-serif text-white mb-6 uppercase">Stay Connected</h2>
         <p className="text-stone-400 max-w-md mx-auto mb-8 text-sm">For ministry inquiries, event planning, or graphic design consultations, please reach out.</p>
         <div className="flex justify-center space-x-6 mb-12 text-sm tracking-widest text-purple-400 uppercase">
